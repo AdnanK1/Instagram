@@ -3,7 +3,20 @@
 <h1>Register</h1>
 <form action="" method="POST">
     {%csrf_token%}
-    {{form.as_p}}
+    {{form.username.label}}
+    {{form.username}}
+
+    {{form.email.label}}
+    {{form.email}}
+
+    {{form.password1.label}}
+    {{form.password1}}
+
+    {{form.password2.label}}
+    {{form.password2}}
+    <br>
+    <p>If you have an account <a href="{% url 'login' %}">Please Click here</a> to log in</p>
+    
     <input type="submit" value="Submit"/>
 </form>
 {% endblock %}
