@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-class Post(models.Model):
+class Image(models.Model):
     title = models.CharField(max_length=150)
     body = models.TextField()
     liked = models.ManyToManyField(User,blank=True,default=None, related_name='blog_posts')
