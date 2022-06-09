@@ -12,6 +12,16 @@ def home(request):
     context = {'images':images }
     return render(request, 'home.html', context)
 
+@login_required(login_url='login')
+def createPost(request):
+    context = {}
+    return render(request, 'createPost.html', context)
+
+@login_required(login_url='login')
+def profilePage(request):
+    context = {}
+    return render(request, '', context)
+
 def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
