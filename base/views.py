@@ -3,11 +3,13 @@ from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from .models import Image,Profile
 
 # Create your views here.
 @login_required(login_url='login')
 def home(request):
-    context = {}
+    images = Image.objects.all()
+    context = {'images':images }
     return render(request, 'home.html', context)
 
 def loginPage(request):
