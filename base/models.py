@@ -1,19 +1,24 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Image(models.Model):
-    title = models.CharField(max_length=150)
-    body = models.TextField()
-    liked = models.ManyToManyField(User,blank=True,default=None, related_name='blog_posts')
-    updated = models.DateTimeField(auto_now=True)
+    image = CloudinaryField('image',default='image')
+    name = models.CharField(max_length=150)
+    caption = models.TextField(null=True,blank=True)
+    #profile = models.ForeignKey(Profile,on_delete=models.SET_NULL, null=True)
+    comments = models.TextField(null=True,blank=True)
+    likes = models.ManyToManyField(User,blank=True,related_name='likes')
+    updated = models.DateTimeField(auto_now=True) 
     created = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User,on_delete=models.CASCADE, related_name='author')
+
+    class Meta:
+        ordering = ['-updated','-created']
 
     def __str__(self):
-        return self.title
-
-    @property
-    def num_likes(self):
-        return self.liked.all().count()
+        return self.name
+    
+    def number_of_likes(self):
+        return self.likes.count()
 
