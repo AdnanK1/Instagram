@@ -3,15 +3,6 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 # Create your models here.
-class Tags(models.Model):
-    name = models.CharField(max_length = 30)
-
-    def __str__ (self):
-        return self.name
-
-    def save_tags(self):
-        self.save()
-        
 class Profile(models.Model):
     photo = CloudinaryField('photo')
     Bio = models.TextField(max_length=500, blank=True)
@@ -25,7 +16,7 @@ class Profile(models.Model):
 
 class Image(models.Model):
     image = CloudinaryField('image')
-    hashtag = models.ManyToManyField(Tags)
+    hashtag = models.CharField(max_length = 30,null=True,blank=True)
     caption = models.TextField(null=True,blank=True)
     profile = models.ForeignKey(Profile,on_delete=models.SET_NULL, null=True)
     comments = models.TextField(null=True,blank=True)
