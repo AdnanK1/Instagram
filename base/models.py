@@ -4,7 +4,7 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Image(models.Model):
-    image = CloudinaryField('image',default='image')
+    image = CloudinaryField('image')
     name = models.CharField(max_length=150)
     caption = models.TextField(null=True,blank=True)
     #profile = models.ForeignKey(Profile,on_delete=models.SET_NULL, null=True)
