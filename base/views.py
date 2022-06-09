@@ -30,7 +30,7 @@ def createPost(request):
 @login_required(login_url='login')
 def profilePage(request):
     context = {}
-    return render(request, '', context)
+    return render(request, 'profile.html', context)
 
 def loginPage(request):
     if request.method == 'POST':
