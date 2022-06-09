@@ -3,11 +3,31 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 # Create your models here.
+class Tags(models.Model):
+    name = models.CharField(max_length = 30)
+
+    def __str__ (self):
+        return self.name
+
+    def save_tags(self):
+        self.save()
+        
+class Profile(models.Model):
+    photo = CloudinaryField('photo')
+    Bio = models.TextField(max_length=500, blank=True)
+    user = models.OneToOneField(User, on_delete= models.CASCADE, null = True)
+    
+    def __str__(self):
+        return self.Bio
+
+    def save_profile(self):
+        self.save()
+
 class Image(models.Model):
     image = CloudinaryField('image')
-    name = models.CharField(max_length=150)
+    hashtag = models.ManyToManyField(Tags)
     caption = models.TextField(null=True,blank=True)
-    #profile = models.ForeignKey(Profile,on_delete=models.SET_NULL, null=True)
+    profile = models.ForeignKey(Profile,on_delete=models.SET_NULL, null=True)
     comments = models.TextField(null=True,blank=True)
     likes = models.ManyToManyField(User,blank=True,related_name='likes')
     updated = models.DateTimeField(auto_now=True) 
