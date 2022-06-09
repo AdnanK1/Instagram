@@ -33,3 +33,6 @@ class Image(models.Model):
     def number_of_likes(self):
         return self.likes.count()
 
+    def save_image(self):
+        self.save()
+

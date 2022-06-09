@@ -15,12 +15,15 @@ def home(request):
 
 @login_required(login_url='login')
 def createPost(request):
-    form = PostForm()
+    
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('home')
+    else:
+        form = PostForm()
+
     context = {'form':form}
     return render(request, 'createPost.html', context)
 
