@@ -34,7 +34,7 @@ def profilePage(request):
         form = PostForm(request.POST)
         if form.is_valid():
             profile = form.save(commit=False)
-            profile.user = request.user
+            profile.profile.username = request.user
             profile.save()
             return redirect('home')
 
