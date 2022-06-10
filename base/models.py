@@ -6,10 +6,10 @@ from cloudinary.models import CloudinaryField
 class Profile(models.Model):
     photo = CloudinaryField('photo')
     Bio = models.TextField(max_length=500, blank=True)
-    username = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     
     def __str__(self):
-        return str(self.username)
+        return str(self.user)
 
     def save_profile(self):
         self.save()
@@ -28,7 +28,7 @@ class Image(models.Model):
         ordering = ['-updated','-created']
 
     def __str__(self):
-        return self.hashtag
+        return str(self.profile)
     
     def number_of_likes(self):
         return self.likes.count()

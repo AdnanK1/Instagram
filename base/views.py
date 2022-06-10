@@ -10,19 +10,21 @@ from .forms import PostForm,ProfileForm
 @login_required(login_url='login')
 def home(request):
     images = Image.objects.all()
-    context = {'images':images }
+    profiles = Profile.objects.all()
+    context = {'images':images,'profiles':profiles }
     return render(request, 'home.html', context)
 
 @login_required(login_url='login')
 def createPost(request):
-    
+    form = PostForm()
+    current_user = Image.objects.get(profilePage)
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST,request.FILES)
         if form.is_valid():
-            form.save()
+            post = form.save(commit=False)
+            post.profile = current_user
+            post.save()
             return redirect('home')
-    else:
-        form = PostForm()
 
     context = {'form':form}
     return render(request, 'createPost.html', context)
@@ -30,11 +32,12 @@ def createPost(request):
 @login_required(login_url='login')
 def profilePage(request):
     form = ProfileForm()
+    current_user = request.user
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
-            profile.profile.username = request.user
+            profile.user = current_user
             profile.save()
             return redirect('home')
 
