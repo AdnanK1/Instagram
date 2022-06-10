@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from .models import Image,Profile
-from .forms import PostForm
+from .forms import PostForm,ProfileForm
 
 # Create your views here.
 @login_required(login_url='login')
@@ -29,7 +29,16 @@ def createPost(request):
 
 @login_required(login_url='login')
 def profilePage(request):
-    context = {}
+    form = ProfileForm()
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect('home')
+
+    context = {'form':form}
     return render(request, 'profile.html', context)
 
 def loginPage(request):
