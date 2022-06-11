@@ -11,7 +11,10 @@ from .forms import PostForm,ProfileForm
 # Create your views here.
 @login_required(login_url='login')
 def home(request):
-    images = Image.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    images = Image.objects.filter(
+        Q(caption__icontains=q) 
+    )
     profiles = Profile.objects.all()
     context = {'images':images,'profiles':profiles }
     return render(request, 'home.html', context)
