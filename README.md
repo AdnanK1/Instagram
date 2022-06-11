@@ -51,16 +51,13 @@ On running the commands successfully, you should have a local version of this re
 
 Navigate to the target directory and open it with a prefered IDE :
 
-* On running the application, type the following on the terminal;
-python3.8 manage.py runserver
+* On running the application, type the following on the terminal: python3.8 manage.py runserver
 run the application:
 
-* To test the application;
-python3.8 manage.py test instagram
+* To test the application: python3.8 manage.py test instagram
 ​
 
-* To navigate to a local browser, Type this on a preferred browser:
-127.0.0.1:8000
+* To navigate to a local browser, Type this on a preferred browser: 127.0.0.1:8000
 
 # Technologies used
 * Python
