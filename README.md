@@ -30,7 +30,7 @@ The users are drawn from the following demographics:
          <tr>
             <td>2.  Click on the add icon as in instagram</td>
             <td></td>
-            <td><code>The Modal shows relatively as designed: a)a link to the create-post form is presented b) onto another window where the form is filled and post c) redirection to the home page is done once the form is validated
+            <td><code>The Modal appears to work as expected: a) a link to the create-post form is provided; b) the user is directed to another window where the form is filled out and submitted; and c) the user is returned to the home page after the form has been validated.
             </code></td>
             <td><code></code></td>
             <td>No user can access this and needs authorizations </td>
@@ -51,12 +51,12 @@ On running the commands successfully, you should have a local version of this re
 
 Navigate to the target directory and open it with a prefered IDE :
 
-* On running the application, type the following on the terminal: python3.8 manage.py runserver
+* On running the application, type the following on the terminal: <code> python3.8 manage.py runserver </code>
 
 run the application:
 
 
-* To navigate to a local browser, Type this on a preferred browser: 127.0.0.1:8000
+* To navigate to a local browser, Type this on a preferred browser: <code> 127.0.0.1:8000 </code>
 
 # Technologies used
 * Python
