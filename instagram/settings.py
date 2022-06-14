@@ -163,9 +163,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # adding config
 cloudinary.config( 
-  cloud_name = config('CLOUD_NAME'), 
-  api_key = config('API_KEY'), 
-  api_secret = config('API_SECRET') 
+  cloud_name = "dq81vb0xv", 
+  api_key = "113144568721748", 
+  api_secret = "SsXFPNqCZf8kOSBhSAtOitvnHnY"
 )
 
 # Configure Django App for Heroku.
