@@ -21,6 +21,7 @@
   </div>  
 </div>
 
+
 {% endfor %}
 {% else %}
 <div class="shadow p-3 mb-5 bg-body rounded">
@@ -30,5 +31,14 @@
       </blockquote>
     </div>
   </div>
+{% endif %}
+
+{% if profiles %}
+{% for profile in profiles %}
+<div class="container">
+  <img src="{{photo.url}}" alt="">
+</div>
+{% endfor %}
+
 {% endif %}
 {% endblock %}
