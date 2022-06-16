@@ -13,7 +13,8 @@ from .forms import PostForm,ProfileForm
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     images = Image.objects.filter(
-        Q(caption__icontains=q) 
+        Q(caption__icontains=q) |
+        Q(hashtag__icontains=q)
     )
     profiles = Profile.objects.all()
     context = {'images':images,'profiles':profiles }
